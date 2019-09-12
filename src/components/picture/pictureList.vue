@@ -7,7 +7,7 @@
                     :class="['mui-control-item',item.id === 0 ? 'mui-active':'']" 
                     v-for="item in pictureArr" 
                     :key="item.id"
-                    @click="getimages(item.id)"
+                    @tap="getimages(item.id)"
                     >
                         {{ item.title}}
                     </a>
