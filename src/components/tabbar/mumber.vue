@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h4>这是mumber组件</h4>
+        <h4>Ready to start...</h4>
     </div>
 </template>
 

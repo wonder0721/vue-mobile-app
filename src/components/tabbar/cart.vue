@@ -109,7 +109,7 @@ export default {
             justify-content: space-around;
             height:35px;
             font-size:12px;
-            margin:0;
+            margin-top:10px;
             text-align: center;
             span:first-of-type{
                 color:red;
