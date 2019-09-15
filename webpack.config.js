@@ -1,6 +1,8 @@
 const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = {
     mode: 'development',
@@ -18,9 +20,16 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             template: path.join(__dirname,'src/index.html'),
-            filename:'index.html'
+            filename:'index.html',
         }),
         new vueLoaderPlugin(),
+        // new BundleAnalyzerPlugin(),
+        new CompressionPlugin({
+            test: /\.(js|css)/,
+            algorithm: 'gzip',
+            minRatio: 0.8,
+            threshold: 0,
+        }),
     ],
     module: {
         rules:[
@@ -48,7 +57,10 @@ module.exports = {
             {
                 test:/\.vue$/,
                 use: 'vue-loader',
-            }
+            },
+            {   test: /\.ico$/,
+                use: 'file-loader?name=[name].[ext]'
+            },
         ]
     }
 }
