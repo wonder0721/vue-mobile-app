@@ -29,10 +29,10 @@ import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 import routerObj from './router.js';
 
-// 导入element-ui组件
-import ElementUI from 'element-ui'
+// 按需导入element-ui组件
+import {InputNumber} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
+Vue.use(InputNumber)
 
 // 导入vue-preview组件
 import VuePreview from 'vue-preview'
@@ -41,6 +41,8 @@ Vue.use(VuePreview)
 // 导入vuex插件
 import Vuex from 'vuex'
 Vue.use(Vuex)
+
+import './favicon.ico'
 
 var cart = JSON.parse(localStorage.getItem('cart') || '[]')
 

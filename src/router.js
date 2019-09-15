@@ -13,6 +13,8 @@ import picture from './components/picture/pictureList.vue'
 import pictureInfo from './components/picture/pictureInfo.vue'
 import goodsList from './components/goods/goodsList.vue'
 import goodsInfo from './components/goods/goodsInfo.vue'
+import goodsDesc from './components/goods/goodsDesc.vue'
+import goodsComments from './components/goods/goodsComments.vue'
 
 // 创建路由对象
 var routerObj = new VueRouter({
@@ -27,7 +29,9 @@ var routerObj = new VueRouter({
         {path:'/index/pictureList',component:picture},
         {path:'/index/pictureList/pictureInfo/:id',component:pictureInfo},
         {path:'/index/goodsList',component:goodsList},
-        {path:'/index/goodsList/goodsInfo/:id',component:goodsInfo,name:'goodsInfo'}
+        {path:'/index/goodsList/goodsInfo/:id',component:goodsInfo,name:'goodsInfo'},
+        {path:'/index/goodsList/goodsDesc/:goodsId',component:goodsDesc,name:'goodsDesc'},
+        {path:'/index/goodsList/goodsComments/:goodsId',component:goodsComments,name:'goodsComments'}
     ],
     linkActiveClass: 'mui-active',
 })
