@@ -1,5 +1,5 @@
 <template>
-    <div class="mui-numbox" data-numbox-min='1' data-numbox-max='10' style="width:105px;height:25px">
+    <div class="mui-numbox" data-numbox-min='1' data-numbox-max='10' style="width:110px;height:25px">
         <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
         <!-- 记得要将父组件传递过来的值用属性绑定的方式调用v-bind -->
         <input id="test" @change="countChange" ref="numBox" class="mui-input-numbox" type="number" :value="goodsCount" readonly/>

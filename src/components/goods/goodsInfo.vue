@@ -31,12 +31,19 @@
                 <p>上架时间：{{ goodsinfo.add_time }}</p>
                 <p>商品库存：{{ goodsinfo.stock_quantity }}件</p>
                 <div class="button-box">
-                    <button class="btn btn-info btn-block">图文介绍</button>
-                    <button class="btn btn-default btn-block">商品评论</button>
+                    <button class="btn btn-info btn-block" @click="goDesc(id)">图文介绍</button>
+                    <button class="btn btn-default btn-block" @click="goComments(id)">商品评论</button>
                 </div>
             </div>
             <hr>
         </div>
+        <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter"
+        >
+            <div class="ball" v-show="ballFlag" ref="ball"></div>
+        </transition>
     </div>
 </template>
 
@@ -50,6 +57,7 @@ export default {
             list:[],
             num:1,
             goodsinfo: {},
+            ballFlag:false,
         }
     },
     methods: {
@@ -66,7 +74,14 @@ export default {
                 this.goodsinfo = r.body.message[0]
             })
         },
+        goDesc(id){
+            this.$router.push({name:'goodsDesc',params:{ goodsId: id }})
+        },
+        goComments(id){
+            this.$router.push({name:'goodsComments',params:{ goodsId: id }})
+        },
         addToCart(){
+            this.ballFlag = !this.ballFlag
             // 得到对应商品的信息对象
             var goodsObj = {
                 id:this.id,
@@ -75,7 +90,24 @@ export default {
                 count:this.num,
             }
             this.$store.commit('addGoods',goodsObj)
-        }
+        },
+        beforeEnter(el){
+            el.style.transform="translate(0,0)"
+        },
+        enter(el,down){
+            var ballPosition = this.$refs.ball.getBoundingClientRect()
+            var targetPosition = document.getElementById('target').getBoundingClientRect()
+            var x = targetPosition.left - ballPosition.left
+            var y = targetPosition.top - ballPosition.top
+            // console.log(x,y)
+            el.offsetWidth
+            el.style.transform=`translate(${x}px,${y}px)`
+            el.style.transition="cubic-bezier(.51,-0.44,1,.54) 0.5s all"
+            down()
+        },
+        afterEnter(el){
+            this.ballFlag = !this.ballFlag
+        },
     },
     created() {
         this.getimages()
@@ -90,7 +122,7 @@ export default {
 }
 </script>
 
-styel <style lang="scss" scoped>
+<style lang="scss" scoped>
 .main-container{
     background-color: #eee;
     overflow: hidden;
@@ -162,6 +194,16 @@ styel <style lang="scss" scoped>
             margin:10px 0;
         }
     }
+}
+.ball{
+    width:15px;
+    height:15px;
+    background-color: #f00;
+    border-radius: 50%;
+    position: absolute;
+    top:350px;
+    left:160px;
+    z-index: 999;
 }
 
 </style>
