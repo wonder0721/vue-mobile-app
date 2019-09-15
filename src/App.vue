@@ -3,7 +3,7 @@
 <template>
     <div class="app-container">
         <div class="header">
-            <mt-header fixed title="WONDER">
+            <mt-header fixed title="VUE-APP">
                 <mt-button icon="back" slot="left" @click="back" v-show="backflag">返回</mt-button>
                 <mt-button icon="more" slot="right" @click="flag=!flag"></mt-button>
             </mt-header>
@@ -18,7 +18,7 @@
             </div>
         </div>
         
-        <div class="main">
+        <div class="main" ref="main">
             <transition>
                 <router-view></router-view>
             </transition>
@@ -35,7 +35,7 @@
                     <span class="mui-tab-label">会员</span>
                 </router-link>
                 <router-link class="mui-tab-item-ljl" to="/cart">
-                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">{{ $store.getters.getTotalCount }}</span></span>
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="target">{{ $store.getters.getTotalCount }}</span></span>
                     <span class="mui-tab-label">购物车</span>
                 </router-link>
                 <router-link class="mui-tab-item-ljl" to="/search">
@@ -65,6 +65,10 @@ export default {
         if (this.$route.path !== '/index'){
             this.backflag = true
         }
+    },
+    mounted() {
+        var h = window.innerHeight
+        this.$refs.main.style.minHeight = h +'px'
     },
     watch:{
         "$route.path": function(newvalue){
@@ -123,6 +127,7 @@ export default {
 .main{
     padding-top: 40px;
     padding-bottom: 50px;
+    // min-height:700px;
 }
 .v-enter{
     opacity:0;
