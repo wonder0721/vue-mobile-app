@@ -1,8 +1,8 @@
 # 这是一个基于vue框架完成的移动端app项目
 
-## 项目演示地址：[vue-app](vue-learn.52chye.cn)
+## 项目演示地址：[vue-learn.52chye.cn](vue-learn.52chye.cn)
 
-### 项目所用接口地址[http://www.liulongbin.top:3005]http://www.liulongbin.top:3005
+### 项目所用接口地址[http://www.liulongbin.top:3005](http://www.liulongbin.top:3005)
 ---
 ## 项目所用技术：webpack4*/vue.js/vue-router/vue-resource/vuex/mui/mintui/elementui
 ---
@@ -18,26 +18,26 @@
 - webpack-dev-serverde（自动打包编译工具）用法
    1. 运行`npm i -d webpack-dev-server`安装依赖(如果没有全局安装需要全局安装`npm i -g webpack-dev-server`)
    2. 每次手动输入webpack-dev-server太麻烦，在package.json文件中scrip添加dev命令:
-   (```)
+   ```
         "scripts": {
             "test": "echo \"Error: no test specified\" && exit 1",
             "build": "webpack",
             "dev": "webpack-dev-server --host 192.168.0.103 --open --port 3000 --contentBase src --hot"
         },
-   (```)
+   ```
    3. 每次运行npm run dev就可以自动打包编译，默认开启本地服务127.0.0.1:8000
    4. webpack-dev-server自动打包编译的bundle.js是托管于项目根目录中的（存储在内存中），非dist目录下的bundle.js
    5. 因此要将index中引用路径改为/bundle.js，否则页面不会刷新
    6. `--host 192.168.0.103 --open --port 3000 --contentBase src --hot`配置主机ip，自动开启，自动寻找src目录以及热更新
    7. webpack-dev-server也可以选择在webpack.config.js中配置(webpack4*无需再配置热更新插件)
-   (```)
+   ```
          devServer: {
             open: true,
             port: 3000,
             contentBase: 'src',
             hot: true,
          },
-   (```)
+   ```
 
 - 使用webpack-html-plugin插件将index页面添加到内存中，不需要再index中引入/bundle,js
    1. `npm i -d webpack-html-plugin`安装依赖插件
@@ -61,7 +61,7 @@
    4. loader的安装与配置：以css为例：
       - 安装对应loader`npm i -d css-loader npm i -d style-loader`
       - 在webpack.js配置节点module下rules数组中配置转化信息
-      (```)
+      ```
          module: {
          rules:[
                // css转化顺序：先使用css-loader转化为css代码,再使用style-loader将css插入到<style>标签中
@@ -101,7 +101,7 @@
                },
             ]
          }
-      (```)
+      ```
    5. 安装babel-loader的注意点：(babel-loader 8.x | babel 7.x)或者(babel-loader 7.x | babel 6.x)
    版本一定要对应好，8对应7 7对应6 不然会报错，报错的话检查一下自己package.json中两个包的版本
    6. 配置vue-loader后webpack4*版本还需要加入vue插件`const vueLoaderPlugin = require('vue-loader/lib/plugin')`
